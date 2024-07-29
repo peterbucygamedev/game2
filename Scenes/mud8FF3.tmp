@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://b7mevd2csrwe5"]
+
+[ext_resource type="Texture2D" uid="uid://cusaykm5vv8dt" path="res://Assets/pixil-frame-0 (64).png" id="1_8fy3b"]
+[ext_resource type="Script" path="res://Scripts/mudsckipper.gd" id="1_d3g6n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rq5ms"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ifp0"]
+atlas = ExtResource("1_8fy3b")
+region = Rect2(0, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgkqk"]
+atlas = ExtResource("1_8fy3b")
+region = Rect2(33, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwmui"]
+atlas = ExtResource("1_8fy3b")
+region = Rect2(66, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa5bf"]
+atlas = ExtResource("1_8fy3b")
+region = Rect2(0, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml2fx"]
+atlas = ExtResource("1_8fy3b")
+region = Rect2(33, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in82l"]
+atlas = ExtResource("1_8fy3b")
+region = Rect2(66, 33, 33, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_68yha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ifp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgkqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwmui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwmui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgkqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa5bf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml2fx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in82l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in82l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="mudsckipper" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_d3g6n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -10)
+shape = SubResource("RectangleShape2D_rq5ms")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16.5)
+sprite_frames = SubResource("SpriteFrames_68yha")
+autoplay = "default"
+frame_progress = 0.351984
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cys7nbjas1200"]
+
+[ext_resource type="Script" path="res://Scripts/Area2D_Beam.gd" id="1_8w5ua"]
+[ext_resource type="Texture2D" uid="uid://b5dfknm32vokr" path="res://Assets/pixil-frame-0 (22).png" id="2_ngtb2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nthg5"]
+size = Vector2(4, 4)
+
+[node name="Beam" type="Area2D"]
+top_level = true
+scale = Vector2(0.5, 0.5)
+collision_layer = 512
+script = ExtResource("1_8w5ua")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3.41061e-13, 0)
+scale = Vector2(0.135105, 0.971036)
+texture = ExtResource("2_ngtb2")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nthg5")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

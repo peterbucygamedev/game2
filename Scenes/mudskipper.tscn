@@ -1,0 +1,150 @@
+[gd_scene load_steps=20 format=3 uid="uid://c5ggwnbshmxuc"]
+
+[ext_resource type="Script" path="res://Scripts/mudskipper.gd" id="1_25xvn"]
+[ext_resource type="Texture2D" uid="uid://dmh3bskb14pak" path="res://Assets/pixil-frame-0 (79).png" id="3_2ohi6"]
+[ext_resource type="Texture2D" uid="uid://qdp2cs1dkjd4" path="res://Assets/pixil-frame-0 (82).png" id="3_hons0"]
+[ext_resource type="PackedScene" uid="uid://cc0h6p8yi2jw2" path="res://Scenes/killzone.tscn" id="4_vsn5q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_db5o2"]
+size = Vector2(16.5, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1grwy"]
+atlas = ExtResource("3_2ohi6")
+region = Rect2(0, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggbh6"]
+atlas = ExtResource("3_2ohi6")
+region = Rect2(33, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2rtk"]
+atlas = ExtResource("3_2ohi6")
+region = Rect2(66, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhqd0"]
+atlas = ExtResource("3_2ohi6")
+region = Rect2(0, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dnk7"]
+atlas = ExtResource("3_2ohi6")
+region = Rect2(33, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lemel"]
+atlas = ExtResource("3_2ohi6")
+region = Rect2(66, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynqlh"]
+atlas = ExtResource("3_hons0")
+region = Rect2(0, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnel4"]
+atlas = ExtResource("3_hons0")
+region = Rect2(33, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdceq"]
+atlas = ExtResource("3_hons0")
+region = Rect2(66, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_covjo"]
+atlas = ExtResource("3_hons0")
+region = Rect2(66, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xa7m7"]
+atlas = ExtResource("3_hons0")
+region = Rect2(0, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pja3e"]
+atlas = ExtResource("3_hons0")
+region = Rect2(33, 33, 33, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f13v0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1grwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggbh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2rtk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2rtk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggbh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhqd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dnk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lemel")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynqlh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnel4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdceq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_covjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_covjo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdceq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xa7m7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pja3e")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ouure"]
+size = Vector2(17, 4)
+
+[node name="mudskipper" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_25xvn")
+
+[node name="bodyCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-0.75, -2.5)
+shape = SubResource("RectangleShape2D_db5o2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_f13v0")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0358818
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="killzone" parent="." instance=ExtResource("4_vsn5q")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_ouure")

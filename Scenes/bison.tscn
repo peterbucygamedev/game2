@@ -1,0 +1,105 @@
+[gd_scene load_steps=14 format=3 uid="uid://clxlv2pv7ltre"]
+
+[ext_resource type="Script" path="res://Scripts/bison.gd" id="1_40a0c"]
+[ext_resource type="Texture2D" uid="uid://gr86j1l1mp15" path="res://Assets/pixil-frame-0 (57).png" id="2_7csew"]
+[ext_resource type="PackedScene" uid="uid://cc0h6p8yi2jw2" path="res://Scenes/killzone.tscn" id="2_qi2ov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1x4fl"]
+size = Vector2(7.5, 5.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7e5pd"]
+atlas = ExtResource("2_7csew")
+region = Rect2(0, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq83d"]
+atlas = ExtResource("2_7csew")
+region = Rect2(33, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qul0i"]
+atlas = ExtResource("2_7csew")
+region = Rect2(66, 0, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dea41"]
+atlas = ExtResource("2_7csew")
+region = Rect2(0, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h6hp"]
+atlas = ExtResource("2_7csew")
+region = Rect2(33, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4naqr"]
+atlas = ExtResource("2_7csew")
+region = Rect2(66, 33, 33, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud1ht"]
+atlas = ExtResource("2_7csew")
+region = Rect2(0, 66, 33, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_43l5p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7e5pd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq83d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qul0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq83d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dea41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h6hp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4naqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud1ht")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_roq50"]
+size = Vector2(22, 5)
+
+[node name="bison" type="CharacterBody2D"]
+script = ExtResource("1_40a0c")
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+position = Vector2(0.5, -8.5)
+target_position = Vector2(16, 0)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+position = Vector2(0.5, -8.5)
+target_position = Vector2(-16, 0)
+
+[node name="bodyCollider" type="CollisionShape2D" parent="."]
+position = Vector2(1, -6)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_1x4fl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -17)
+sprite_frames = SubResource("SpriteFrames_43l5p")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.671118
+
+[node name="killzone" parent="." instance=ExtResource("2_qi2ov")]
+
+[node name="killzoneCollision" type="CollisionShape2D" parent="killzone"]
+position = Vector2(1, -6)
+shape = SubResource("RectangleShape2D_roq50")
